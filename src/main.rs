@@ -17,8 +17,18 @@ fn main() {
         }
     };
 
+    let mut sess = match Session::new(){
+        Ok(stream) => {
+            println!("1.2 Creat session successful! ");
+            stream
+        }
+        Err(e) => {
+            println!("1.2 Creat session error {}", e);
+            return;
+        }
+    };
 
-    let mut sess = Session::new().unwrap();
+
     sess.set_tcp_stream(tcp);
     sess.handshake().unwrap();
 
